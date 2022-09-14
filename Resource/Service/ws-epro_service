@@ -1,0 +1,16 @@
+[Unit]
+Description=WebSocket By ePro
+Documentation=https://joysmark.me
+After=syslog.target network-online.target
+
+[Service]
+User=root
+NoNewPrivileges=true
+ExecStart=/usr/local/joysmark/ws-epro -f /etc/wildydev21/ws-epro.conf
+Restart=on-failure
+RestartPreventExitStatus=23
+LimitNPROC=10000
+LimitNOFILE=1000000
+
+[Install]
+WantedBy=multi-user.target

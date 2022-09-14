@@ -1,0 +1,12 @@
+[Unit]
+Description=SSH Auto Kill Service
+Documentation=https://joysmark.me
+After=syslog.target network-online.target
+
+[Service]
+User=root
+NoNewPrivileges=true
+ExecStart=/usr/local/joysmark/ssh-auto-kill
+
+[Install]
+WantedBy=multi-user.target
