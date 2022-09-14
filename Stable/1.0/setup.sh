@@ -21,6 +21,11 @@ export CYAN='\033[0;36m';
 export LIGHT='\033[0;37m';
 export NC='\033[0m';
 
+# Getting
+MYIP=$(wget -qO- ipinfo.io/ip);
+echo "Checking VPS"
+clear
+
 # // Export Banner Status Information
 export ERROR="[${RED} ERROR ${NC}]";
 export INFO="[${YELLOW} INFO ${NC}]";
