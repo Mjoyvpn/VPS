@@ -1,5 +1,5 @@
 #!/bin/bash
-# (C) Copyright 2021-2022 By JoySmark
+# (C) Copyright 2021-2022 By WildyDev21
 # ==================================================================
 # Name        : VPN Script Quick Installation Script
 # Description : This Script Is Setup for running other
@@ -7,8 +7,9 @@
 # Created     : 16-05-2022 ( 16 May 2022 )
 # OS Support  : Ubuntu & Debian
 # Auther      : WildyDev21
-# WebSite     : https://t.me/joysmark
-# Github      : github.com/Mjoyvpn
+# WebSite     : https://wildydev21.com
+# Github      : github.com/wildydev21
+# License     : MIT License
 # ==================================================================
 
 # // Export Color & Information
@@ -20,11 +21,6 @@ export PURPLE='\033[0;35m';
 export CYAN='\033[0;36m';
 export LIGHT='\033[0;37m';
 export NC='\033[0m';
-
-# Getting
-MYIP=$(wget -qO- ipinfo.io/ip);
-echo "Checking VPS"
-clear
 
 # // Export Banner Status Information
 export ERROR="[${RED} ERROR ${NC}]";
@@ -50,12 +46,12 @@ export OS_ARCH=$( uname -m );
 # // String For Helping Installation
 export VERSION="1.0";
 export EDITION="Stable";
-export AUTHER="joysmark";
-export ROOT_DIRECTORY="/etc/joysmark";
-export CORE_DIRECTORY="/usr/local/joysmark";
+export AUTHER="WildyDev21";
+export ROOT_DIRECTORY="/etc/wildydev21";
+export CORE_DIRECTORY="/usr/local/wildydev21";
 export SERVICE_DIRECTORY="/etc/systemd/system";
 export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script";
-export REPO_URL="https://repository.joysmark";
+export REPO_URL="https://repository.wildydev21.com";
 
 # // Checking Your Running Or Root or no
 if [[ "${EUID}" -ne 0 ]]; then
@@ -64,7 +60,7 @@ if [[ "${EUID}" -ne 0 ]]; then
 fi
 
 # // Make Main Directory
-if [[ -r /usr/local/joysmark/ ]]; then
+if [[ -r /usr/local/wildydev21/ ]]; then
         echo -e "${ERROR} Script Already Installed !"
         sleep 3
         clear
@@ -90,19 +86,19 @@ else
 fi
 
 # // Make Folder
-rm -rf /etc/joysmark/;
-rm -rf /usr/local/joysmark/;
+rm -rf /etc/wildydev21/;
+rm -rf /usr/local/wildydev21/;
 rm -rf /etc/v2ray/;
 rm -rf /etc/xray/;
-mkdir -p /etc/joysmark/;
+mkdir -p /etc/wildydev21/;
 
 # // Setting Time
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime;
 
 # // Ruless Accpet
-wget -q -O /etc/joysmark/Rules "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Other/Rules.txt";
+wget -q -O /etc/wildydev21/Rules "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Other/Rules.txt";
 clear;
-cat /etc/joysmark/Rules;
+cat /etc/wildydev21/Rules;
 echo "";
 echo -e "To continue the installation, please agree to our rules by typing '${YELLOW}ok${NC}'";
 echo "";
@@ -113,24 +109,24 @@ if [[ $accepted_rules == "ok" ]]; then
     sleep 5;
     clear;
 else
-    rm -rf /etc/joysmark/;
-    rm -rf /usr/local/joysmark/;
+    rm -rf /etc/wildydev21/;
+    rm -rf /usr/local/wildydev21/;
     echo "";
     echo -e "${ERROR} Sorry, you can't continue the installation because you don't agree with our rules.";
     exit 1;
 fi 
 
 # // Create local folder
-mkdir -p /usr/local/joysmark/;
-mkdir -p /etc/joysmark/bin/;
-mkdir -p /etc/joysmark/local/;
-mkdir -p /etc/joysmark/sbin/;
-mkdir -p /etc/joysmark/snc-relay/;
-mkdir -p /etc/joysmark/python-vrt/;
-mkdir -p /etc/joysmark/panel-controller/;
-mkdir -p /etc/joysmark/addons-controller/;
-mkdir -p /etc/joysmark/build/;
-mkdir -p /etc/joysmark/data/;
+mkdir -p /usr/local/wildydev21/;
+mkdir -p /etc/wildydev21/bin/;
+mkdir -p /etc/wildydev21/local/;
+mkdir -p /etc/wildydev21/sbin/;
+mkdir -p /etc/wildydev21/snc-relay/;
+mkdir -p /etc/wildydev21/python-vrt/;
+mkdir -p /etc/wildydev21/panel-controller/;
+mkdir -p /etc/wildydev21/addons-controller/;
+mkdir -p /etc/wildydev21/build/;
+mkdir -p /etc/wildydev21/data/;
 
 # // Update and Upgrade all repository for fixing error
 apt update -y;
@@ -162,10 +158,10 @@ export TIME_NYA="$TIMEZONE";
 # // Exporting The Banner
 clear
 echo -e "${YELLOW}--------------------------------------------------${NC}
-   Welcome To joysmark VPN Script V1.0 Stable
+   Welcome To WildyDev21 VPN Script V1.0 Stable
       This Script will Auto Setup VPN Server
-                Author : ${GREEN}joysmark${NC}
-        © Copyright 2022-2023 By ${GREEN}JoySmark${NC}
+                Author : ${GREEN}WildyDev21${NC}
+        © Copyright 2022-2023 By ${GREEN}WildyDev21${NC}
 ${YELLOW}--------------------------------------------------${NC}";
 
 # // Validating Result
@@ -325,13 +321,13 @@ apt autoremove -y;
 
 # // Installing BBR & FQ
 cat > /etc/sysctl.conf << END
-# Sysctl Config By JoySmark
+# Sysctl Config By WildyDev21
 # ============================================================
 # Please do not try to change / modif this config
 # This file is for enable bbr & disable ipv6 
 # if you modifed this, bbr & ipv6 disable will error
 # ============================================================
-# (C) Copyright 2022-2023 By JoySmark
+# (C) Copyright 2022-2023 By WildyDev21
 
 # // Enable IPv4 Forward
 net.ipv4.ip_forward=1
@@ -392,7 +388,7 @@ rm -rf /root/.acme.sh;
 mkdir -p /root/.acme.sh;
 wget -q -O /root/.acme.sh/acme.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/acme.sh";
 chmod +x /root/.acme.sh/acme.sh;
-sudo /root/.acme.sh/acme.sh --register-account -m joysmark.me;
+sudo /root/.acme.sh/acme.sh --register-account -m kibocelcom@gmail.com;
 sudo /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256 -ak ec-256;
 
 # // Success
@@ -432,8 +428,8 @@ if [[ $domain == "" ]]; then
 fi
 
 # // Input Domain To VPS
-echo "$domain" > /etc/joysmark/domain.txt;
-domain=$( cat /etc/joysmark/domain.txt );
+echo "$domain" > /etc/wildydev21/domain.txt;
+domain=$( cat /etc/wildydev21/domain.txt );
 
 # // Making Certificate
 clear;
@@ -442,7 +438,7 @@ rm -rf /root/.acme.sh;
 mkdir -p /root/.acme.sh;
 wget -q -O /root/.acme.sh/acme.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/acme.sh";
 chmod +x /root/.acme.sh/acme.sh;
-sudo /root/.acme.sh/acme.sh --register-account -m joysmark.me;
+sudo /root/.acme.sh/acme.sh --register-account -m kibocelcom@gmail.com;
 sudo /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256 -ak ec-256;
 
 # // Success
