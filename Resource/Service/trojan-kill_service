@@ -1,0 +1,12 @@
+[Unit]
+Description=Trojan Auto Kill Service
+Documentation=https://wildydev21.com
+After=syslog.target network-online.target
+
+[Service]
+User=root
+NoNewPrivileges=true
+ExecStart=/usr/local/wildydev21/trojan-auto-kill
+
+[Install]
+WantedBy=multi-user.target
