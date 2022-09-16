@@ -50,7 +50,7 @@ export AUTHER="WildyDev21";
 export ROOT_DIRECTORY="/etc/wildydev21";
 export CORE_DIRECTORY="/usr/local/wildydev21";
 export SERVICE_DIRECTORY="/etc/systemd/system";
-export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script";
+export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main";
 export REPO_URL="https://repository.wildydev21.com";
 
 # // Checking Your Running Or Root or no
@@ -71,7 +71,7 @@ if ! which jq > /dev/null; then
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/get-ip_sh' | bash;
+wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/get-ip_sh' | bash;
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
@@ -82,7 +82,7 @@ export COUNTRY_NYA="$COUNTRY";
 export TIME_NYA="$TIMEZONE";
 
 # // Check Blacklist
-export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/blacklist.php?ip='"${IP_NYA}"'' );
+export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/blacklist.php?ip='"${IP_NYA}"'' );
 if [[ $( echo $CHK_BLACKLIST | jq -r '.respon_code' ) == "127" ]]; then
     SKIP=true
 else
@@ -114,7 +114,7 @@ if [[ $LCN_KEY == "" ]]; then
     exit 1;
 fi
 
-export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
+export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
 if [[ $( echo ${API_REQ_NYA} | jq -r '.respon_code' ) == "104" ]]; then
     SKIP=true;
 else
@@ -213,129 +213,129 @@ clear
 
 # // Downloading Menu
 export Layanan='trojan';
-wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
-wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
-wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
-wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
-wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
-wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
-wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}log "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}log.sh"; chmod +x /usr/local/sbin/${Layanan}log;
-wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
+wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
+wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
+wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
+wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
+wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
+wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}log "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}log.sh"; chmod +x /usr/local/sbin/${Layanan}log;
+wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
 
 export Layanan='vmess';
-wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
-wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
-wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
-wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
-wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
-wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
-wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}log "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}log.sh"; chmod +x /usr/local/sbin/${Layanan}log;
-wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
+wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
+wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
+wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
+wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
+wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
+wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}log "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}log.sh"; chmod +x /usr/local/sbin/${Layanan}log;
+wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
 
 export Layanan='vless';
-wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
-wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
-wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
-wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
-wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
-wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
-wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}log "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}log.sh"; chmod +x /usr/local/sbin/${Layanan}log;
-wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
+wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
+wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
+wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
+wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
+wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
+wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}log "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}log.sh"; chmod +x /usr/local/sbin/${Layanan}log;
+wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
 
 export Layanan='ss';
-wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
-wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
-wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
-wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
-wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
-wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
-wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}log "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}log.sh"; chmod +x /usr/local/sbin/${Layanan}log;
-wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
+wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
+wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
+wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
+wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
+wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
+wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}log "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}log.sh"; chmod +x /usr/local/sbin/${Layanan}log;
+wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
 
 export Layanan='ssh';
-wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
-wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
-wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
-wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
-wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
-wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
-wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
-wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
+wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
+wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
+wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
+wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
+wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
+wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
+wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
 
 export Layanan='wg';
-wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
-wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
-wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
-wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
-wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
-wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
-wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
-wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
+wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
+wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
+wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
+wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
+wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
+wget -q -O /usr/local/sbin/chk${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/chk${Layanan}.sh"; chmod +x /usr/local/sbin/chk${Layanan};
+wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
 
 export Layanan='socks';
-wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
-wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
-wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
-wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
-wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
-wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
-wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
+wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
+wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
+wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
+wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
+wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
+wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
 
 export Layanan='http';
-wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
-wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
-wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
-wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
-wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
-wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
-wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
+wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
+wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
+wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
+wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
+wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
+wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
 
 export Layanan='ssr';
-wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
-wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
-wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
-wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
-wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
-wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
-wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
-wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
+wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
+wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
+wget -q -O /usr/local/sbin/trial${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}exp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
+wget -q -O /usr/local/sbin/${Layanan}config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
+wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/${Layanan}list.sh"; chmod +x /usr/local/sbin/${Layanan}list;
+wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
 
 # // Panel Tools
-wget -q -O /usr/local/sbin/panel-add-http "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/panel/panel-add-http.sh"; chmod +x /usr/local/sbin/panel-add-http;
-wget -q -O /usr/local/sbin/panel-add-ssh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/panel/panel-add-ssh.sh"; chmod +x /usr/local/sbin/panel-add-ssh;
-wget -q -O /usr/local/sbin/panel-add-wg "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/panel/panel-add-wg.sh"; chmod +x /usr/local/sbin/panel-add-wg;
-wget -q -O /usr/local/sbin/panel-add-trojan "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/panel/panel-add-trojan.sh"; chmod +x /usr/local/sbin/panel-add-trojan;
-wget -q -O /usr/local/sbin/panel-add-vmess "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/panel/panel-add-vmess.sh"; chmod +x /usr/local/sbin/panel-add-vmess;
-wget -q -O /usr/local/sbin/panel-add-vless "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/panel/panel-add-vless.sh"; chmod +x /usr/local/sbin/panel-add-vless;
-wget -q -O /usr/local/sbin/panel-add-socks "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/panel/panel-add-socks.sh"; chmod +x /usr/local/sbin/panel-add-socks;
-wget -q -O /usr/local/sbin/panel-add-ss "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/panel/panel-add-ss.sh"; chmod +x /usr/local/sbin/panel-add-ss;
+wget -q -O /usr/local/sbin/panel-add-http "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/panel/panel-add-http.sh"; chmod +x /usr/local/sbin/panel-add-http;
+wget -q -O /usr/local/sbin/panel-add-ssh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/panel/panel-add-ssh.sh"; chmod +x /usr/local/sbin/panel-add-ssh;
+wget -q -O /usr/local/sbin/panel-add-wg "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/panel/panel-add-wg.sh"; chmod +x /usr/local/sbin/panel-add-wg;
+wget -q -O /usr/local/sbin/panel-add-trojan "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/panel/panel-add-trojan.sh"; chmod +x /usr/local/sbin/panel-add-trojan;
+wget -q -O /usr/local/sbin/panel-add-vmess "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/panel/panel-add-vmess.sh"; chmod +x /usr/local/sbin/panel-add-vmess;
+wget -q -O /usr/local/sbin/panel-add-vless "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/panel/panel-add-vless.sh"; chmod +x /usr/local/sbin/panel-add-vless;
+wget -q -O /usr/local/sbin/panel-add-socks "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/panel/panel-add-socks.sh"; chmod +x /usr/local/sbin/panel-add-socks;
+wget -q -O /usr/local/sbin/panel-add-ss "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/panel/panel-add-ss.sh"; chmod +x /usr/local/sbin/panel-add-ss;
 
 # // Other
-wget -q -O /usr/local/sbin/menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/menu.sh"; chmod +x /usr/local/sbin/menu;
-wget -q -O /usr/local/sbin/lcn-change "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/other/change-lcn.sh"; chmod +x /usr/local/sbin/lcn-change;
-wget -q -O /usr/local/sbin/speedtest "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/speedtest"; chmod +x /usr/local/sbin/speedtest;
-wget -q -O /usr/local/sbin/ram-usage "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/ram-usage.sh"; chmod +x /usr/local/sbin/ram-usage;
-wget -q -O /usr/local/sbin/autokill-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/pro/autokill/menu.sh"; chmod +x /usr/local/sbin/autokill-menu;
-wget -q -O /usr/local/sbin/autoexp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/autoexp.sh"; chmod +x /usr/local/sbin/autoexp;
-wget -q -O /usr/local/sbin/autobackup "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/other/backup.sh"; chmod +x /usr/local/sbin/autobackup;
-wget -q -O /usr/local/sbin/backup "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/other/backup.sh"; chmod +x /usr/local/sbin/backup;
-wget -q -O /usr/local/sbin/restore "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/other/restore.sh"; chmod +x /usr/local/sbin/restore;
-wget -q -O /usr/local/sbin/change-port "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/other/port-change.sh"; chmod +x /usr/local/sbin/change-port;
-wget -q -O /usr/local/sbin/clearlog "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/clearlog.sh"; chmod +x /usr/local/sbin/clearlog;
-wget -q -O /usr/local/sbin/infonya "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/info.sh"; chmod +x /usr/local/sbin/infonya;
-wget -q -O /usr/local/sbin/vpnscript "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/setup/script-version.sh"; chmod +x /usr/local/sbin/vpnscript
+wget -q -O /usr/local/sbin/menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/menu.sh"; chmod +x /usr/local/sbin/menu;
+wget -q -O /usr/local/sbin/lcn-change "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/other/change-lcn.sh"; chmod +x /usr/local/sbin/lcn-change;
+wget -q -O /usr/local/sbin/speedtest "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/speedtest"; chmod +x /usr/local/sbin/speedtest;
+wget -q -O /usr/local/sbin/ram-usage "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/ram-usage.sh"; chmod +x /usr/local/sbin/ram-usage;
+wget -q -O /usr/local/sbin/autokill-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/pro/autokill/menu.sh"; chmod +x /usr/local/sbin/autokill-menu;
+wget -q -O /usr/local/sbin/autoexp "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/autoexp.sh"; chmod +x /usr/local/sbin/autoexp;
+wget -q -O /usr/local/sbin/autobackup "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/other/backup.sh"; chmod +x /usr/local/sbin/autobackup;
+wget -q -O /usr/local/sbin/backup "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/other/backup.sh"; chmod +x /usr/local/sbin/backup;
+wget -q -O /usr/local/sbin/restore "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/other/restore.sh"; chmod +x /usr/local/sbin/restore;
+wget -q -O /usr/local/sbin/change-port "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/other/port-change.sh"; chmod +x /usr/local/sbin/change-port;
+wget -q -O /usr/local/sbin/clearlog "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/clearlog.sh"; chmod +x /usr/local/sbin/clearlog;
+wget -q -O /usr/local/sbin/infonya "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/info.sh"; chmod +x /usr/local/sbin/infonya;
+wget -q -O /usr/local/sbin/vpnscript "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/setup/script-version.sh"; chmod +x /usr/local/sbin/vpnscript
 
 # // Remove Not Used Files
 rm -f menu-setup.sh
