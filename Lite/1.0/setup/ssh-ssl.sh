@@ -1,15 +1,12 @@
 #!/bin/bash
-# (C) Copyright 2021-2022 By WildyDev21
+# (C) Copyright 2021-2022 By joysmark
 # ==================================================================
 # Name        : VPN Script Quick Installation Script
 # Description : This Script Is Setup for running other
 #               quick Setup script from one click installation
 # Created     : 16-05-2022 ( 16 May 2022 )
 # OS Support  : Ubuntu & Debian
-# Auther      : WildyDev21
-# WebSite     : https://wildydev21.com
-# Github      : github.com/wildydev21
-# License     : MIT License
+# Auther      : joysmark
 # ==================================================================
 
 # // Export Color & Information
@@ -50,7 +47,7 @@ export AUTHER="WildyDev21";
 export ROOT_DIRECTORY="/etc/wildydev21";
 export CORE_DIRECTORY="/usr/local/wildydev21";
 export SERVICE_DIRECTORY="/etc/systemd/system";
-export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script";
+export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main";
 export REPO_URL="https://repository.wildydev21.com";
 
 # // Checking Your Running Or Root or no
@@ -71,7 +68,7 @@ if ! which jq > /dev/null; then
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/get-ip_sh' | bash;
+wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/get-ip_sh' | bash;
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
@@ -82,7 +79,7 @@ export COUNTRY_NYA="$COUNTRY";
 export TIME_NYA="$TIMEZONE";
 
 # // Check Blacklist
-export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/blacklist.php?ip='"${IP_NYA}"'' );
+export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/blacklist.php?ip='"${IP_NYA}"'' );
 if [[ $( echo $CHK_BLACKLIST | jq -r '.respon_code' ) == "127" ]]; then
     SKIP=true;
 else
@@ -114,7 +111,7 @@ if [[ $LCN_KEY == "" ]]; then
     exit 1;
 fi
 
-export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
+export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
 if [[ $( echo ${API_REQ_NYA} | jq -r '.respon_code' ) == "104" ]]; then
     SKIP=true;
 else
@@ -208,18 +205,18 @@ else
 fi
 
 # // Replace Pam.d password common
-wget -q -O /etc/pam.d/common-password "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/password";
+wget -q -O /etc/pam.d/common-password "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/password";
 chmod +x /etc/pam.d/common-password;
 
 # // Installing Dropbear
-wget -q -O /etc/ssh/sshd_config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/sshd_config";
+wget -q -O /etc/ssh/sshd_config "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/sshd_config";
 /etc/init.d/ssh restart;
 apt install dropbear -y;
-wget -q -O /etc/default/dropbear "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/dropbear_conf";
+wget -q -O /etc/default/dropbear "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/dropbear_conf";
 chmod +x /etc/default/dropbear;
 echo "/bin/false" >> /etc/shells;
 echo "/usr/sbin/nologin" >> /etc/shells;
-wget -q -O /etc/wildydev21/banner.txt "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/banner.txt";
+wget -q -O /etc/wildydev21/banner.txt "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/banner.txt";
 /etc/init.d/dropbear restart;
 
 # // Installing Stunnel5
@@ -229,7 +226,7 @@ if [[ -f /etc/systemd/system/stunnel5.service ]]; then
     /etc/init.d/stunnel5 stop > /dev/null 2>&1;
 fi
 cd /root/;
-wget -q -O stunnel5.zip "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/stunnel5.zip";
+wget -q -O stunnel5.zip "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/stunnel5.zip";
 unzip -o stunnel5.zip > /dev/null 2>&1;
 cd /root/stunnel;
 chmod +x configure && ./configure && make && make install;
@@ -238,10 +235,10 @@ rm -r -f stunnel;
 rm -f stunnel5.zip;
 mkdir -p /etc/stunnel5;
 chmod 644 /etc/stunnel5;
-wget -q -O /etc/stunnel5/stunnel5.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/stunnel5_conf";
-wget -q -O /etc/stunnel5/stunnel5.pem "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Data/stunnel_cert";
-wget -q -O /etc/systemd/system/stunnel5.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/stunnel5_service";
-wget -q -O /etc/init.d/stunnel5 "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/stunnel5_init";
+wget -q -O /etc/stunnel5/stunnel5.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/stunnel5_conf";
+wget -q -O /etc/stunnel5/stunnel5.pem "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Data/stunnel_cert";
+wget -q -O /etc/systemd/system/stunnel5.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/stunnel5_service";
+wget -q -O /etc/init.d/stunnel5 "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/stunnel5_init";
 chmod 600 /etc/stunnel5/stunnel5.pem;
 chmod +x /etc/init.d/stunnel5;
 cp /usr/local/bin/stunnel /usr/local/wildydev21/stunnel5;
@@ -256,11 +253,11 @@ systemctl start stunnel5;
 /etc/init.d/stunnel5 restart;
 
 # // Installing Ws-ePro
-wget -q -O /usr/local/wildydev21/ws-epro "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/ws-epro";
+wget -q -O /usr/local/wildydev21/ws-epro "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/ws-epro";
 chmod +x /usr/local/wildydev21/ws-epro;
-wget -q -O /etc/systemd/system/ws-epro.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/ws-epro_service";
+wget -q -O /etc/systemd/system/ws-epro.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/ws-epro_service";
 chmod +x /etc/systemd/system/ws-epro.service;
-wget -q -O /etc/wildydev21/ws-epro.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/ws-epro_conf";
+wget -q -O /etc/wildydev21/ws-epro.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/ws-epro_conf";
 chmod 644 /etc/wildydev21/ws-epro.conf;
 systemctl enable ws-epro;
 systemctl start ws-epro;
@@ -268,7 +265,7 @@ systemctl restart ws-epro;
 
 # // Instaling SSLH
 apt install sslh -y;
-wget -q -O /lib/systemd/system/sslh.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/sslh_service"
+wget -q -O /lib/systemd/system/sslh.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/sslh_service"
 systemctl daemon-reload
 systemctl disable sslh > /dev/null 2>&1;
 systemctl stop sslh > /dev/null 2>&1;
