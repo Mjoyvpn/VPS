@@ -45,20 +45,18 @@ export OS_ARCH=$( uname -m );
 
 # // Start
 clear;
-echo -e "${RED_BG}           Trojan TCP-Grpc-WebSocket | TLS/XTLS           ${NC}";
-echo -e "${GREEN} 1${YELLOW})${NC}. Create Trojan Account";
-echo -e "${GREEN} 2${YELLOW})${NC}. Delete Trojan Account";
-echo -e "${GREEN} 3${YELLOW})${NC}. Renew Trojan Account";
-echo -e "${GREEN} 4${YELLOW})${NC}. List Config of Trojan Account";
-echo -e "${GREEN} 5${YELLOW})${NC}. Generate Trojan trial Account";
+echo -e "${RED_BG}                        ShadowsocksR                      ${NC}";
+echo -e "${GREEN} 1${YELLOW})${NC}. Create ShadowsocksR Account";
+echo -e "${GREEN} 2${YELLOW})${NC}. Delete ShadowsocksR Account";
+echo -e "${GREEN} 3${YELLOW})${NC}. Renew ShadowsocksR Account";
+echo -e "${GREEN} 4${YELLOW})${NC}. List Config of ShadowsocksR Account";
+echo -e "${GREEN} 5${YELLOW})${NC}. Generate ShadowsocksR trial Account";
 echo -e "${GREEN} 6${YELLOW})${NC}. Remove All Expired Account";
-echo -e "${GREEN} 7${YELLOW})${NC}. Check Trojan User Login Session";
-echo -e "${GREEN} 8${YELLOW})${NC}. Check Trojan User Login Log";
-echo -e "${GREEN} 9${YELLOW})${NC}. All Trojan Account List";
+echo -e "${GREEN} 7${YELLOW})${NC}. All ShadowsocksR Account List";
 echo "";
 read -p "Please Choose one : " selection_mu;
 
-node_name=trojan;
+node_name=ssr;
 
 case $selection_mu in
     1)
@@ -80,12 +78,6 @@ case $selection_mu in
         ${node_name}exp;
     ;;
     7)
-        chk${node_name};
-    ;;
-    8)
-        ${node_name}log;
-    ;;
-    9)
         ${node_name}list;
     ;;
     *)
