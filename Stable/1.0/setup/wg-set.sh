@@ -270,7 +270,7 @@ source /etc/wireguard/string-data;
 
 # // Create Server Config
 cat > /etc/wireguard/wg0.conf << END
-# Wireguard Config By WildyDev21
+# Wireguard Config By JoySmark
 # ============================================================
 # Please do not try to change / modif this config
 # This config is tag to wireguard service
