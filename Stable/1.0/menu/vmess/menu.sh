@@ -1,5 +1,5 @@
 #!/bin/bash
-# (C) Copyright 2021-2022 By WildyDev21
+# (C) Copyright 2021-2022 By joysmark
 # ==================================================================
 # Name        : VPN Script Quick Installation Script
 # Description : This Script Is Setup for running other
