@@ -108,7 +108,7 @@ if [[ $LCN_KEY == "" ]]; then
     exit 1;
 fi
 
-export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
+export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
 if [[ $( echo ${API_REQ_NYA} | jq -r '.respon_code' ) == "104" ]]; then
     SKIP=true;
 else
@@ -220,7 +220,7 @@ mkdir -p /etc/nginx/conf.d/;
 wget -q -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/nginx_conf";
 wget -q -O /etc/nginx/conf.d/wildydev21.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/wildydev21_conf";
 mkdir -p /etc/wildydev21/webserver/;
-wget -q -O /etc/wildydev21/webserver/index.html "https://raw.githubusercontent.com/Mjoyvpn/VPS/maint/Resource/Config/index.file";
+wget -q -O /etc/wildydev21/webserver/index.html "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/index.file";
 sudo chown -R www-data:www-data /etc/wildydev21/webserver/;
 sudo chmod 755 /etc/wildydev21/webserver/;
 systemctl enable nginx;
