@@ -70,7 +70,7 @@ if ! which jq > /dev/null; then
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/get-ip_sh' | bash;
+wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/get-ip_sh' | bash;
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
@@ -81,7 +81,7 @@ export COUNTRY_NYA="$COUNTRY";
 export TIME_NYA="$TIMEZONE";
 
 # // Check Blacklist
-export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/blacklist.php?ip='"${IP_NYA}"'' );
+export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/blacklist.php?ip='"${IP_NYA}"'' );
 if [[ $( echo $CHK_BLACKLIST | jq -r '.respon_code' ) == "127" ]]; then
     SKIP=true;
 else
@@ -207,11 +207,11 @@ systemctl stop xray-mini@nontls > /dev/null 2>&1
 mkdir -p /usr/local/wildydev21/;
 
 # // Downloading XRay Mini Core
-wget -q -O /usr/local/wildydev21/xray-mini "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/xray-mini";
+wget -q -O /usr/local/wildydev21/xray-mini "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/xray-mini";
 chmod +x /usr/local/wildydev21/xray-mini;
 
 # // Downloading XRay Mini Service
-wget -q -O /etc/systemd/system/xray-mini@.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/xray-mini_service";
+wget -q -O /etc/systemd/system/xray-mini@.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/xray-mini_service";
 chmod +x /etc/systemd/system/xray-mini@.service;
 
 # // Removing Old Folder
@@ -238,11 +238,11 @@ touch /etc/xray-mini/client.conf;
 export domain=$( cat /etc/wildydev21/domain.txt );
 
 # // Downloading XRay TLS Config
-wget -qO- "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Xray-Mini/1.0.Stable/tls_json" | jq '.inbounds[0].streamSettings.xtlsSettings.certificates += [{"certificateFile": "'/root/.acme.sh/${domain}_ecc/fullchain.cer'","keyFile": "'/root/.acme.sh/${domain}_ecc/${domain}.key'"}]' > /etc/xray-mini/tls.json;
-wget -q -O /etc/xray-mini/nontls.json "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Xray-Mini/1.0.Stable/nontls_json";
-wget -q -O /etc/xray-mini/shadowsocks.json "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Xray-Mini/1.0.Stable/shadowsocks_json";
-wget -q -O /etc/xray-mini/socks.json "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Xray-Mini/1.0.Stable/socks_json";
-wget -q -O /etc/xray-mini/http.json "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Xray-Mini/1.0.Stable/http_json";
+wget -qO- "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Xray-Mini/1.0.Stable/tls_json" | jq '.inbounds[0].streamSettings.xtlsSettings.certificates += [{"certificateFile": "'/root/.acme.sh/${domain}_ecc/fullchain.cer'","keyFile": "'/root/.acme.sh/${domain}_ecc/${domain}.key'"}]' > /etc/xray-mini/tls.json;
+wget -q -O /etc/xray-mini/nontls.json "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Xray-Mini/1.0.Stable/nontls_json";
+wget -q -O /etc/xray-mini/shadowsocks.json "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Xray-Mini/1.0.Stable/shadowsocks_json";
+wget -q -O /etc/xray-mini/socks.json "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Xray-Mini/1.0.Stable/socks_json";
+wget -q -O /etc/xray-mini/http.json "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Xray-Mini/1.0.Stable/http_json";
 
 # // Removing Apache 2 if existed
 systemctl stop apache2 > /dev/null 2>&1;
