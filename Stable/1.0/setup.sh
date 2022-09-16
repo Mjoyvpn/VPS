@@ -1,5 +1,5 @@
 #!/bin/bash
-# (C) Copyright 2021-2022 By WildyDev21
+# (C) Copyright 2021-2022 By joysmark
 # ==================================================================
 # Name        : VPN Script Quick Installation Script
 # Description : This Script Is Setup for running other
@@ -50,7 +50,7 @@ export AUTHER="WildyDev21";
 export ROOT_DIRECTORY="/etc/wildydev21";
 export CORE_DIRECTORY="/usr/local/wildydev21";
 export SERVICE_DIRECTORY="/etc/systemd/system";
-export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script";
+export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main";
 export REPO_URL="https://repository.wildydev21.com";
 
 # // Checking Your Running Or Root or no
@@ -96,7 +96,7 @@ mkdir -p /etc/wildydev21/;
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime;
 
 # // Ruless Accpet
-wget -q -O /etc/wildydev21/Rules "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Other/Rules.txt";
+wget -q -O /etc/wildydev21/Rules "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Other/Rules.txt";
 clear;
 cat /etc/wildydev21/Rules;
 echo "";
@@ -145,7 +145,7 @@ if ! which jq > /dev/null; then
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/get-ip_sh' | bash;
+wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/get-ip_sh' | bash;
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
@@ -386,7 +386,7 @@ if [[ $choose_domain == "2" ]]; then # // Using Automatic Domain
 echo -e "${OKEY} Starting Generating Certificate";
 rm -rf /root/.acme.sh;
 mkdir -p /root/.acme.sh;
-wget -q -O /root/.acme.sh/acme.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/acme.sh";
+wget -q -O /root/.acme.sh/acme.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/acme.sh";
 chmod +x /root/.acme.sh/acme.sh;
 sudo /root/.acme.sh/acme.sh --register-account -m kibocelcom@gmail.com;
 sudo /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256 -ak ec-256;
@@ -436,7 +436,7 @@ clear;
 echo -e "${OKEY} Starting Generating Certificate";
 rm -rf /root/.acme.sh;
 mkdir -p /root/.acme.sh;
-wget -q -O /root/.acme.sh/acme.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/acme.sh";
+wget -q -O /root/.acme.sh/acme.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/acme.sh";
 chmod +x /root/.acme.sh/acme.sh;
 sudo /root/.acme.sh/acme.sh --register-account -m kibocelcom@gmail.com;
 sudo /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256 -ak ec-256;
@@ -453,47 +453,47 @@ else
 fi
 
 # // Installing Requirement
-wget -q -O /root/requirement.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/setup/requirement.sh";
+wget -q -O /root/requirement.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/setup/requirement.sh";
 chmod +x requirement.sh;
 ./requirement.sh;
 
 # // SSH & WebSocket Install
-wget -q -O /root/ssh-ssl.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/setup/ssh-ssl.sh";
+wget -q -O /root/ssh-ssl.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/setup/ssh-ssl.sh";
 chmod +x ssh-ssl.sh;
 ./ssh-ssl.sh;
 
 # // Nginx Install
-wget -q -O /root/nginx.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/setup/nginx.sh";
+wget -q -O /root/nginx.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/setup/nginx.sh";
 chmod +x nginx.sh;
 ./nginx.sh;
 
 # // XRay-Mini Install
-wget -q -O /root/xray-mini.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/setup/xray-mini.sh";
+wget -q -O /root/xray-mini.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/setup/xray-mini.sh";
 chmod +x xray-mini.sh;
 ./xray-mini.sh;
 
 # // SSH & SSL Install
-wget -q -O /root/ssh-ssl.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/setup/ssh-ssl.sh";
+wget -q -O /root/ssh-ssl.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/setup/ssh-ssl.sh";
 chmod +x ssh-ssl.sh;
 ./ssh-ssl.sh;
 
 # // OpenVPN Install
-wget -q -O /root/ovpn.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/setup/ovpn.sh";
+wget -q -O /root/ovpn.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/setup/ovpn.sh";
 chmod +x ovpn.sh;
 ./ovpn.sh;
 
 # // Wireguard Install
-wget -q -O /root/wg-set.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/setup/wg-set.sh";
+wget -q -O /root/wg-set.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/setup/wg-set.sh";
 chmod +x wg-set.sh;
 ./wg-set.sh;
 
 # // ShadowsocksR Install
-wget -q -O /root/ssr.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/setup/ssr.sh";
+wget -q -O /root/ssr.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/setup/ssr.sh";
 chmod +x ssr.sh;
 ./ssr.sh;
 
 # // Installing Menu
-wget -q -O /root/menu-setup.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/menu-setup.sh";
+wget -q -O /root/menu-setup.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/menu-setup.sh";
 chmod +x menu-setup.sh;
 ./menu-setup.sh;
 
