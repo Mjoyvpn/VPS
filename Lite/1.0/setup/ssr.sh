@@ -1,15 +1,12 @@
 #!/bin/bash
-# (C) Copyright 2021-2022 By WildyDev21
+# (C) Copyright 2021-2022 By joysmark
 # ==================================================================
 # Name        : VPN Script Quick Installation Script
 # Description : This Script Is Setup for running other
 #               quick Setup script from one click installation
 # Created     : 16-05-2022 ( 16 May 2022 )
 # OS Support  : Ubuntu & Debian
-# Auther      : WildyDev21
-# WebSite     : https://wildydev21.com
-# Github      : github.com/wildydev21
-# License     : MIT License
+# Auther      : joysmark
 # ==================================================================
 
 # // Export Color & Information
@@ -50,7 +47,7 @@ export AUTHER="WildyDev21";
 export ROOT_DIRECTORY="/etc/wildydev21";
 export CORE_DIRECTORY="/usr/local/wildydev21";
 export SERVICE_DIRECTORY="/etc/systemd/system";
-export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script";
+export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main";
 export REPO_URL="https://repository.wildydev21.com";
 
 # // Checking Your Running Or Root or no
@@ -73,7 +70,7 @@ if ! which jq > /dev/null; then
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/get-ip_sh' | bash;
+wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/get-ip_sh' | bash;
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
@@ -84,7 +81,7 @@ export COUNTRY_NYA="$COUNTRY";
 export TIME_NYA="$TIMEZONE";
 
 # // Check Blacklist
-export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/blacklist.php?ip='"${IP_NYA}"'' );
+export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/blacklist.php?ip='"${IP_NYA}"'' );
 if [[ $( echo $CHK_BLACKLIST | jq -r '.respon_code' ) == "127" ]]; then
     SKIP=true;
 else
@@ -122,7 +119,7 @@ if [[ $LCN_KEY == "" ]]; then
     exit 1;
 fi
 
-export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
+export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
 if [[ $( echo ${API_REQ_NYA} | jq -r '.respon_code' ) == "104" ]]; then
     SKIP=true;
 else
@@ -250,7 +247,7 @@ apt install python -y;
 
 # // ShadowsocksR Setup
 cd /etc/wildydev21/ssr-server/;
-wget -q -O /etc/wildydev21/ssr-server/SSR-Server.zip "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/SSR-Server.zip";
+wget -q -O /etc/wildydev21/ssr-server/SSR-Server.zip "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/SSR-Server.zip";
 unzip -o SSR-Server.zip > /dev/null 2>&1;
 chmod +x jq;
 rm -f SSR-Server.zip;
@@ -270,7 +267,7 @@ iptables -I INPUT -m state --state NEW -m udp -p udp --dport 1200:1300 -j ACCEPT
 iptables-save > /etc/iptables.up.rules;
 
 # // Downloading SSR Server Init.d
-wget -q -O /etc/init.d/ssr-server "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/ssr-server_init";
+wget -q -O /etc/init.d/ssr-server "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/ssr-server_init";
 chmod +x /etc/init.d/ssr-server;
 /etc/init.d/ssr-server start;
 
