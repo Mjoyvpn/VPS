@@ -1,15 +1,12 @@
 #!/bin/bash
-# (C) Copyright 2021-2022 By WildyDev21
+# (C) Copyright 2021-2022 By joysmark
 # ==================================================================
 # Name        : VPN Script Quick Installation Script
 # Description : This Script Is Setup for running other
 #               quick Setup script from one click installation
 # Created     : 16-05-2022 ( 16 May 2022 )
 # OS Support  : Ubuntu & Debian
-# Auther      : WildyDev21
-# WebSite     : https://wildydev21.com
-# Github      : github.com/wildydev21
-# License     : MIT License
+# Auther      : joysmark
 # ==================================================================
 
 # // Export Color & Information
@@ -50,7 +47,7 @@ export AUTHER="WildyDev21";
 export ROOT_DIRECTORY="/etc/wildydev21";
 export CORE_DIRECTORY="/usr/local/wildydev21";
 export SERVICE_DIRECTORY="/etc/systemd/system";
-export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script";
+export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main";
 export REPO_URL="https://repository.wildydev21.com";
 
 # // Checking Your Running Or Root or no
@@ -68,7 +65,7 @@ if ! which jq > /dev/null; then
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/get-ip_sh' | bash;
+wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/get-ip_sh' | bash;
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
@@ -98,7 +95,7 @@ export Hash="$(echo -n "$Lcn_String" | sha256sum | cut -d ' ' -f 1)";
 export Result_Hash="$(echo -n "${Hash}${Algo1}${Hash}${Algo2}${Hash}${Algo3}${Hash}${Algo4}${Hash}${Algo5}" | sha256sum | cut -d ' ' -f 1 )" ;
 
 # // Check Blacklist
-export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/blacklist.php?ip='"${IP_NYA}"'' );
+export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/blacklist.php?ip='"${IP_NYA}"'' );
 if [[ $( echo $CHK_BLACKLIST | jq -r '.respon_code' ) == "127" ]]; then
     echo -e "${OKEY} Your IP Not Blacklisted";
 else
@@ -107,7 +104,7 @@ else
 fi
 
 # // Checking Your License Key
-export SEND_API_REQUEST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/chk-install.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${Result_Hash}"'' );
+export SEND_API_REQUEST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/chk-install.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${Result_Hash}"'' );
 if [[ $SEND_API_REQUEST == "" ]]; then
     echo -e "${ERROR} Database Connection Having Issue";
     exit 1;
@@ -151,7 +148,7 @@ if [[ $Result_Hash == "$( echo $SEND_API_REQUEST | jq -r '.license' )" ]]; then
             fi
 
             # // Send Request to database server
-            export DATABASE_SERVER_RESPON=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/install-req.php?scrty_key=468e8dbb-4f46-40f2-850c-dcaf2eb49d64&ip_addr='"${IP_NYA}"'&lcn_key='"${Result_Hash}"'&types_ins=Stable' );
+            export DATABASE_SERVER_RESPON=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/install-req.php?scrty_key=468e8dbb-4f46-40f2-850c-dcaf2eb49d64&ip_addr='"${IP_NYA}"'&lcn_key='"${Result_Hash}"'&types_ins=Stable' );
             if [[ $DATABASE_SERVER_RESPON == "" ]]; then
                 echo -e "${ERROR} Database Connection Having Issue";
                 exit 1;
@@ -164,7 +161,7 @@ if [[ $Result_Hash == "$( echo $SEND_API_REQUEST | jq -r '.license' )" ]]; then
             sleep 5
 
             # // Aktivasi IP anda
-            export DATABASE_SERVER_RESPON=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/install-verif.php?scrty_key=0c556079-2093-4de4-b825-258bf2daa977&ip_addr='"${IP_NYA}"'&uuids='"$(echo $DATABASE_SERVER_RESPON | jq -r '.uuid' )"'' );
+            export DATABASE_SERVER_RESPON=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/install-verif.php?scrty_key=0c556079-2093-4de4-b825-258bf2daa977&ip_addr='"${IP_NYA}"'&uuids='"$(echo $DATABASE_SERVER_RESPON | jq -r '.uuid' )"'' );
             if [[ $( echo $DATABASE_SERVER_RESPON | jq -r '.respon_code' ) == "118" ]]; then
                 echo -e "${OKEY} Successfull Registered Your IP";
                 INSTALLASI_STATUS="install";
@@ -244,7 +241,7 @@ else
 fi
 
 # // Export API REQ FOR Installation information
-export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
+export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
 if [[ $( echo ${API_REQ_NYA} | jq -r '.respon_code' ) == "104" ]]; then
     SKIP=true;
 else
