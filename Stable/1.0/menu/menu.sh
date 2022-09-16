@@ -7,9 +7,6 @@
 # Created     : 16-05-2022 ( 16 May 2022 )
 # OS Support  : Ubuntu & Debian
 # Auther      : JOY SMARK
-# WebSite     : https://t.me/joysmark
-# Github      : github.com/JOYSMARK
-# License     : MIT License
 # ==================================================================
 
 # // Export Color & Information
