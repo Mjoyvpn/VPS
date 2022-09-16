@@ -50,7 +50,7 @@ export AUTHER="WildyDev21";
 export ROOT_DIRECTORY="/etc/wildydev21";
 export CORE_DIRECTORY="/usr/local/wildydev21";
 export SERVICE_DIRECTORY="/etc/systemd/system";
-export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script";
+export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main";
 export REPO_URL="https://repository.wildydev21.com";
 
 # // Checking Your Running Or Root or no
@@ -70,7 +70,7 @@ if ! which jq > /dev/null; then
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/get-ip_sh' | bash;
+wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/get-ip_sh' | bash;
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
@@ -81,7 +81,7 @@ export COUNTRY_NYA="$COUNTRY";
 export TIME_NYA="$TIMEZONE";
 
 # // Check Blacklist
-export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/blacklist.php?ip='"${IP_NYA}"'' );
+export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/blacklist.php?ip='"${IP_NYA}"'' );
 if [[ $( echo $CHK_BLACKLIST | jq -r '.respon_code' ) == "127" ]]; then
     SKIP=true;
 else
@@ -111,7 +111,7 @@ if [[ $LCN_KEY == "" ]]; then
     exit 1;
 fi
 
-export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
+export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
 if [[ $( echo ${API_REQ_NYA} | jq -r '.respon_code' ) == "104" ]]; then
     SKIP=true;
 else
@@ -243,7 +243,7 @@ apt install zlib1g-dev -y;
 apt install libssl-dev -y;
 
 # // Installing neofetch
-wget -q -O /usr/local/sbin/neofetch "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/neofetch"; chmod +x /usr/local/sbin/neofetch;
+wget -q -O /usr/local/sbin/neofetch "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/neofetch"; chmod +x /usr/local/sbin/neofetch;
 
 # // Setting Time
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime;
@@ -255,7 +255,7 @@ export MYIP2="s/xxxxxxxxx/$IP_NYA/g";
 # // Installing Vnstat 2.9
 apt install vnstat -y;
 /etc/init.d/vnstat stop;
-wget -q -O vnstat.zip "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/vnstat.zip";
+wget -q -O vnstat.zip "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/vnstat.zip";
 unzip -o vnstat.zip > /dev/null 2>&1;
 cd vnstat;
 chmod +x configure;
@@ -271,11 +271,11 @@ rm -r -f vnstat;
 rm -f vnstat.zip;
 
 # // Installing UDP Mini
-wget -q -O /usr/local/wildydev21/udp-mini "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/udp-mini";
+wget -q -O /usr/local/wildydev21/udp-mini "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/udp-mini";
 chmod +x /usr/local/wildydev21/udp-mini;
-wget -q -O /etc/systemd/system/udp-mini-1.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/udp-mini-1.service";
-wget -q -O /etc/systemd/system/udp-mini-2.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/udp-mini-2.service";
-wget -q -O /etc/systemd/system/udp-mini-3.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/udp-mini-3.service";
+wget -q -O /etc/systemd/system/udp-mini-1.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/udp-mini-1.service";
+wget -q -O /etc/systemd/system/udp-mini-2.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/udp-mini-2.service";
+wget -q -O /etc/systemd/system/udp-mini-3.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/udp-mini-3.service";
 systemctl disable udp-mini-1 > /dev/null 2>&1;
 systemctl stop udp-mini-1 > /dev/null 2>&1;
 systemctl enable udp-mini-1;
@@ -308,18 +308,18 @@ netfilter-persistent reload;
 
 # // Installing Squid Proxy
 apt install squid -y;
-wget -q -O /etc/squid/squid.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/squid_conf";
+wget -q -O /etc/squid/squid.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/squid_conf";
 sed -i $MYIP2 /etc/squid/squid.conf;
 mkdir -p /etc/wildydev21/squid;
 /etc/init.d/squid restart;
 
 # // Installing OHP Proxy
-wget -q -O /usr/local/wildydev21/ohp-mini "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Core/ohp-mini";
+wget -q -O /usr/local/wildydev21/ohp-mini "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/ohp-mini";
 chmod +x /usr/local/wildydev21/ohp-mini
-wget -q -O /etc/systemd/system/ohp-mini-1.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/ohp-mini-1_service"
-wget -q -O /etc/systemd/system/ohp-mini-2.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/ohp-mini-2_service"
-wget -q -O /etc/systemd/system/ohp-mini-3.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/ohp-mini-3_service"
-wget -q -O /etc/systemd/system/ohp-mini-4.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/ohp-mini-4_service"
+wget -q -O /etc/systemd/system/ohp-mini-1.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/ohp-mini-1_service"
+wget -q -O /etc/systemd/system/ohp-mini-2.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/ohp-mini-2_service"
+wget -q -O /etc/systemd/system/ohp-mini-3.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/ohp-mini-3_service"
+wget -q -O /etc/systemd/system/ohp-mini-4.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/ohp-mini-4_service"
 systemctl disable ohp-mini-1 > /dev/null 2>&1
 systemctl stop ohp-mini-1 > /dev/null 2>&1
 systemctl enable ohp-mini-1
@@ -338,17 +338,17 @@ systemctl enable ohp-mini-4
 systemctl start ohp-mini-4
 
 # // Installing Autokill For Vmess Vless Trojan Shadowsocks and ssh
-wget -q -O /etc/systemd/system/ssh-kill.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/ssh-kill_service";
-wget -q -O /etc/systemd/system/vmess-kill.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/vmess-kill_service";
-wget -q -O /etc/systemd/system/vless-kill.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/vless-kill_service";
-wget -q -O /etc/systemd/system/trojan-kill.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/trojan-kill_service";
-wget -q -O /etc/systemd/system/ss-kill.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/ss-kill_service";
-wget -q -O /usr/local/wildydev21/vmess-auto-kill "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/pro/autokill/vmess-kill.sh"; chmod +x /usr/local/wildydev21/vmess-auto-kill;
-wget -q -O /usr/local/wildydev21/ssh-auto-kill "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/pro/autokill/ssh-kill.sh"; chmod +x /usr/local/wildydev21/ssh-auto-kill;
-wget -q -O /usr/local/wildydev21/vless-auto-kill "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/pro/autokill/vless-kill.sh"; chmod +x /usr/local/wildydev21/vless-auto-kill;
-wget -q -O /usr/local/wildydev21/trojan-auto-kill "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/pro/autokill/trojan-kill.sh"; chmod +x /usr/local/wildydev21/trojan-auto-kill;
-wget -q -O /usr/local/wildydev21/ss-auto-kill "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/pro/autokill/ss-kill.sh"; chmod +x /usr/local/wildydev21/ss-auto-kill;
-wget -q -O /etc/wildydev21/autokill.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Stable/1.0/menu/pro/autokill/autokill_conf"; chmod +x /etc/wildydev21/autokill.conf;
+wget -q -O /etc/systemd/system/ssh-kill.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/ssh-kill_service";
+wget -q -O /etc/systemd/system/vmess-kill.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/vmess-kill_service";
+wget -q -O /etc/systemd/system/vless-kill.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/vless-kill_service";
+wget -q -O /etc/systemd/system/trojan-kill.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/trojan-kill_service";
+wget -q -O /etc/systemd/system/ss-kill.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/ss-kill_service";
+wget -q -O /usr/local/wildydev21/vmess-auto-kill "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/pro/autokill/vmess-kill.sh"; chmod +x /usr/local/wildydev21/vmess-auto-kill;
+wget -q -O /usr/local/wildydev21/ssh-auto-kill "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/pro/autokill/ssh-kill.sh"; chmod +x /usr/local/wildydev21/ssh-auto-kill;
+wget -q -O /usr/local/wildydev21/vless-auto-kill "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/pro/autokill/vless-kill.sh"; chmod +x /usr/local/wildydev21/vless-auto-kill;
+wget -q -O /usr/local/wildydev21/trojan-auto-kill "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/pro/autokill/trojan-kill.sh"; chmod +x /usr/local/wildydev21/trojan-auto-kill;
+wget -q -O /usr/local/wildydev21/ss-auto-kill "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/pro/autokill/ss-kill.sh"; chmod +x /usr/local/wildydev21/ss-auto-kill;
+wget -q -O /etc/wildydev21/autokill.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/pro/autokill/autokill_conf"; chmod +x /etc/wildydev21/autokill.conf;
 systemctl enable vmess-kill;
 systemctl enable ssh-kill;
 systemctl enable vless-kill;
@@ -382,8 +382,8 @@ apt install fail2ban -y;
 echo "autoexp && clear && infonya" >> /etc/profile
 
 # // Installing RC-Local
-wget -q -O /etc/systemd/system/rc-local.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/rc-local_service";
-wget -q -O /etc/rc.local "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/rc-local_conf";
+wget -q -O /etc/systemd/system/rc-local.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/rc-local_service";
+wget -q -O /etc/rc.local "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/rc-local_conf";
 chmod +x /etc/rc.local
 systemctl enable rc-local
 systemctl start rc-local
