@@ -50,7 +50,7 @@ export AUTHER="WildyDev21";
 export ROOT_DIRECTORY="/etc/wildydev21";
 export CORE_DIRECTORY="/usr/local/wildydev21";
 export SERVICE_DIRECTORY="/etc/systemd/system";
-export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script";
+export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main";
 export REPO_URL="https://repository.wildydev21.com";
 
 # // Checking Your Running Or Root or no
@@ -72,7 +72,7 @@ if ! which jq > /dev/null; then
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/get-ip_sh' | bash;
+wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/get-ip_sh' | bash;
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
@@ -83,7 +83,7 @@ export COUNTRY_NYA="$COUNTRY";
 export TIME_NYA="$TIMEZONE";
 
 # // Check Blacklist
-export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/blacklist.php?ip='"${IP_NYA}"'' );
+export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/blacklist.php?ip='"${IP_NYA}"'' );
 if [[ $( echo $CHK_BLACKLIST | jq -r '.respon_code' ) == "127" ]]; then
     SKIP=true;
 else
@@ -117,7 +117,7 @@ if [[ $LCN_KEY == "" ]]; then
     exit 1;
 fi
 
-export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
+export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
 if [[ $( echo ${API_REQ_NYA} | jq -r '.respon_code' ) == "104" ]]; then
     SKIP=true;
 else
@@ -236,7 +236,7 @@ mkdir -p /etc/openvpn;
 
 # // Enter To OpenVPN Main Folder
 cd /etc/openvpn/;
-wget -q -O cert.zip "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Data/ovpn_cert.zip";
+wget -q -O cert.zip "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Data/ovpn_cert.zip";
 unzip -o cert.zip;
 rm -f cert.zip;
 mkdir -p config;
@@ -254,12 +254,12 @@ cp /usr/lib/x86_64-linux-gnu/openvpn/plugins/openvpn-plugin-auth-pam.so /usr/lib
 sed -i 's/#AUTOSTART="all"/AUTOSTART="all"/g' /etc/default/openvpn;
 
 # // Downloading OpenVPN Server Config
-wget -q -O /etc/openvpn/tcp.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/OpenVPN/tcp_conf";
-wget -q -O /etc/openvpn/udp.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/OpenVPN/udp_conf";
+wget -q -O /etc/openvpn/tcp.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/OpenVPN/tcp_conf";
+wget -q -O /etc/openvpn/udp.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/OpenVPN/udp_conf";
 
 # // Remove The OpenVPN Service & Replace New OpenVPN Service
 rm -f /lib/systemd/system/openvpn-server@.service;
-wget -q -O /etc/systemd/system/openvpn@.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/openvpn_service";
+wget -q -O /etc/systemd/system/openvpn@.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/openvpn_service";
 
 # Enable OpenVPN & Start OpenVPN
 systemctl daemon-reload;
@@ -292,9 +292,9 @@ echo "Starting Daemon Service For OpenVPN.";
 echo "Successfull Started Daemon Service For OpenVPN.";
 
 # // Generating TCP To Cache Directory
-wget -q -O /etc/openvpn/config/tcp.ovpn "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/OpenVPN/tcp_client";
-wget -q -O /etc/openvpn/config/udp.ovpn "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/OpenVPN/udp_client";
-wget -q -O /etc/openvpn/config/ssl.ovpn "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/OpenVPN/ssl_client";
+wget -q -O /etc/openvpn/config/tcp.ovpn "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/OpenVPN/tcp_client";
+wget -q -O /etc/openvpn/config/udp.ovpn "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/OpenVPN/udp_client";
+wget -q -O /etc/openvpn/config/ssl.ovpn "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/OpenVPN/ssl_client";
 
 # // Adding IP Address To OpenVPN Client Configuration
 sed -i $MYIP2 /etc/openvpn/config/tcp.ovpn;
