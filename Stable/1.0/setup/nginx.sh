@@ -50,7 +50,7 @@ export AUTHER="WildyDev21";
 export ROOT_DIRECTORY="/etc/wildydev21";
 export CORE_DIRECTORY="/usr/local/wildydev21";
 export SERVICE_DIRECTORY="/etc/systemd/system";
-export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script";
+export SCRIPT_SETUP_URL="https://raw.githubusercontent.com/Mjoyvpn/VPS/main";
 export REPO_URL="https://repository.wildydev21.com";
 
 # // Checking Your Running Or Root or no
@@ -69,7 +69,7 @@ if ! which jq > /dev/null; then
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/get-ip_sh' | bash;
+wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/get-ip_sh' | bash;
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
@@ -80,7 +80,7 @@ export COUNTRY_NYA="$COUNTRY";
 export TIME_NYA="$TIMEZONE";
 
 # // Check Blacklist
-export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/blacklist.php?ip='"${IP_NYA}"'' );
+export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/blacklist.php?ip='"${IP_NYA}"'' );
 if [[ $( echo $CHK_BLACKLIST | jq -r '.respon_code' ) == "127" ]]; then
     SKIP=true
 else
@@ -213,14 +213,14 @@ tar -zxvf nginx.tar.gz; cd nginx-1.19.9/;
             --with-http_realip_module;
 make && make install;
 cd && rm -rf /root/nginx-1.19.9 && rm -f /root/nginx.tar.gz;
-wget -q -O /lib/systemd/system/nginx.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Service/nginx_service";
+wget -q -O /lib/systemd/system/nginx.service "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Service/nginx_service";
 systemctl stop nginx;
 rm -rf /etc/nginx/sites-*;
 mkdir -p /etc/nginx/conf.d/;
-wget -q -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/nginx_conf";
-wget -q -O /etc/nginx/conf.d/wildydev21.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/wildydev21_conf";
+wget -q -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/nginx_conf";
+wget -q -O /etc/nginx/conf.d/wildydev21.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/wildydev21_conf";
 mkdir -p /etc/wildydev21/webserver/;
-wget -q -O /etc/wildydev21/webserver/index.html "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/index.file";
+wget -q -O /etc/wildydev21/webserver/index.html "https://raw.githubusercontent.com/Mjoyvpn/VPS/maint/Resource/Config/index.file";
 sudo chown -R www-data:www-data /etc/wildydev21/webserver/;
 sudo chmod 755 /etc/wildydev21/webserver/;
 systemctl enable nginx;
