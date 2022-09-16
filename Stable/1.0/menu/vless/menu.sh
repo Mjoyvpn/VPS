@@ -6,7 +6,7 @@
 #               quick Setup script from one click installation
 # Created     : 16-05-2022 ( 16 May 2022 )
 # OS Support  : Ubuntu & Debian
-# Auther      : WildyDev21
+# Auther      : joysmark
 # WebSite     : https://wildydev21.com
 # Github      : github.com/wildydev21
 # License     : MIT License
