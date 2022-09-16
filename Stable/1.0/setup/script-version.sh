@@ -1,15 +1,12 @@
 #!/bin/bash
-# (C) Copyright 2022-2023 By WildyDev21
+# (C) Copyright 2022-2023 By joysmark
 # ==================================================================
 # Name        : VPN Script Quick Installation Script
 # Description : This Script Is Setup for running other
 #               quick Setup script from one click installation
 # Created     : 16-05-2022 ( 16 May 2022 )
 # OS Support  : Ubuntu & Debian
-# Auther      : WildyDev21
-# WebSite     : https://wildydev21.com
-# Github      : github.com/wildydev21
-# License     : MIT License
+# Auther      : joysmark
 # ==================================================================
 
 # // Export Color & Information
@@ -52,4 +49,4 @@ fi
 
 clear;
 echo "VPN Script V${VERSION} ( ${NAME} Patch ${PATCH} ) | ${VERSION_ID} | Ubuntu - Debian";
-echo "(C) Copyright 2022 By WildyDev21.Com";
+echo "(C) Copyright 2022 By joysmark";
