@@ -18,6 +18,7 @@ export PURPLE='\033[0;35m';
 export CYAN='\033[0;36m';
 export LIGHT='\033[0;37m';
 export NC='\033[0m';
+MYIP=$(wget -qO- ipinfo.io/ip);
 
 # // Export Banner Status Information
 export ERROR="[${RED} ERROR ${NC}]";
@@ -211,7 +212,7 @@ mv backup.zip $IP_NYA-$date.zip
 tanggal=$(date +"%Y-%m-%d %X");
 
 # // Upload to rclone
-wget -q -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/vpn-script/Resource/Config/rclone_conf";
+wget -q -O /root/.config/rclone/rclone.conf "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Config/rclone_conf";
 rclone copy "$IP_NYA-$date.zip" WildyDev21:Script-VPN-Backup/
 url=$(rclone link "WildyDev21:Script-VPN-Backup/$IP_NYA-$date.zip")
 F_ID=(`echo $url | grep '^https' | cut -d'=' -f2`)
