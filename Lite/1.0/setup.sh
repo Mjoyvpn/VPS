@@ -18,7 +18,7 @@ export PURPLE='\033[0;35m';
 export CYAN='\033[0;36m';
 export LIGHT='\033[0;37m';
 export NC='\033[0m';
-MYIP=$(curl -sS ipv4.icanhazip.com)
+IP_NYA=$( curl -s https://ipinfo.io/ip )
 
 # // Export Banner Status Information
 export ERROR="[${RED} ERROR ${NC}]";
