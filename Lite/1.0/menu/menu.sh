@@ -21,6 +21,7 @@ export PURPLE='\033[0;35m';
 export CYAN='\033[0;36m';
 export LIGHT='\033[0;37m';
 export NC='\033[0m';
+MYIP=$(wget -qO- ipinfo.io/ip);
 
 # // Export Banner Status Information
 export ERROR="[${RED} ERROR ${NC}]";
@@ -77,7 +78,7 @@ else
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://releases.wildydev21.com/vpn-script/get-ip_sh' | bash;
+wget -qO- --inet4-only 'https://raw.githubusercontent.com/Mjoyvpn/VPS/main/get-ip_sh' | bash;
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
@@ -88,7 +89,7 @@ export COUNTRY_NYA="$COUNTRY";
 export TIME_NYA="$TIMEZONE";
 
 # // Check Blacklist
-export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/blacklist.php?ip='"${IP_NYA}"'' );
+export CHK_BLACKLIST=$( wget -qO- --inet4-only 'https://api.wildydev21.com/blacklist.php?ip='"${IP_NYA}"'' );
 if [[ $( echo $CHK_BLACKLIST | jq -r '.respon_code' ) == "127" ]]; then
     SKIP=true
 else
@@ -112,7 +113,7 @@ if [[ $LCN_KEY == "" ]]; then
     exit 1;
 fi
 
-export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/vpn-script/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
+export API_REQ_NYA=$( wget -qO- --inet4-only 'https://api.wildydev21.com/secret/chk-rnn.php?scrty_key=61716199-7c73-4945-9918-c41133d4c94e&ip_addr='"${IP_NYA}"'&lcn_key='"${LCN_KEY}"'' );
 if [[ $( echo ${API_REQ_NYA} | jq -r '.respon_code' ) == "104" ]]; then
     SKIP=true;
 else
@@ -280,9 +281,9 @@ case $choosemu in
         echo -e "${OKEY} Starting Generating Certificate";
         rm -rf /root/.acme.sh;
         mkdir -p /root/.acme.sh;
-        wget -q -O /root/.acme.sh/acme.sh "https://releases.wildydev21.com/vpn-script/Resource/Core/acme.sh";
+        wget -q -O /root/.acme.sh/acme.sh "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Resource/Core/acme.sh";
         chmod +x /root/.acme.sh/acme.sh;
-        sudo /root/.acme.sh/acme.sh --register-account -m vpn-script@wildydev21.com;
+        sudo /root/.acme.sh/acme.sh --register-account -m kibocelcom@gmail.com;
         sudo /root/.acme.sh/acme.sh --issue -d $domain --standalone -k ec-256 -ak ec-256;
 
         # // Successfull Change Path to xray
