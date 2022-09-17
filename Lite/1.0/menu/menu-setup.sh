@@ -299,9 +299,9 @@ wget -q -O /usr/local/sbin/${Layanan}list "https://raw.githubusercontent.com/Mjo
 wget -q -O /usr/local/sbin/renew${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/renew${Layanan}.sh"; chmod +x /usr/local/sbin/renew${Layanan};
 
 export Layanan='ssr';
-wget -q -O /usr/local/sbin/${Layanan}-menu "https://releases.wildydev21.com/vpn-script/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
-wget -q -O /usr/local/sbin/add${Layanan} "https://releases.wildydev21.com/vpn-script/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
-wget -q -O /usr/local/sbin/del${Layanan} "https://releases.wildydev21.com/vpn-script/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
+wget -q -O /usr/local/sbin/${Layanan}-menu "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/menu.sh"; chmod +x /usr/local/sbin/${Layanan}-menu;
+wget -q -O /usr/local/sbin/add${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/add${Layanan}.sh"; chmod +x /usr/local/sbin/add${Layanan};
+wget -q -O /usr/local/sbin/del${Layanan} "https://raw.githubusercontent.com/Mjoyvpn/VPS/main/Stable/1.0/menu/${Layanan}/del${Layanan}.sh"; chmod +x /usr/local/sbin/del${Layanan};
 wget -q -O /usr/local/sbin/trial${Layanan} "https://releases.wildydev21.com/vpn-script/Stable/1.0/menu/${Layanan}/trial${Layanan}.sh"; chmod +x /usr/local/sbin/trial${Layanan};
 wget -q -O /usr/local/sbin/${Layanan}exp "https://releases.wildydev21.com/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}exp.sh"; chmod +x /usr/local/sbin/${Layanan}exp;
 wget -q -O /usr/local/sbin/${Layanan}config "https://releases.wildydev21.com/vpn-script/Stable/1.0/menu/${Layanan}/${Layanan}config.sh"; chmod +x /usr/local/sbin/${Layanan}config;
