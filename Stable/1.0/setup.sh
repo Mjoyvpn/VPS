@@ -8,7 +8,7 @@
 # OS Support  : Ubuntu & Debian
 # Auther      : joysmark
 # ==================================================================
-
+MYIP=$(curl -sS ipv4.icanhazip.com)
 # // Export Color & Information
 export RED='\033[0;31m';
 export GREEN='\033[0;32m';
@@ -18,6 +18,7 @@ export PURPLE='\033[0;35m';
 export CYAN='\033[0;36m';
 export LIGHT='\033[0;37m';
 export NC='\033[0m';
+MYIP=$(curl -sS ipv4.icanhazip.com)
 
 # // Export Banner Status Information
 export ERROR="[${RED} ERROR ${NC}]";
