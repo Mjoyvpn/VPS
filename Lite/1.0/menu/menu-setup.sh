@@ -68,7 +68,7 @@ if ! which jq > /dev/null; then
 fi
 
 # // Exporting Network Information
-wget -qO- --inet4-only 'https://releases.wildydev21.com/get-ip_sh' | bash;
+
 source /root/ip-detail.txt;
 export IP_NYA="$IP";
 export ASN_NYA="$ASN";
